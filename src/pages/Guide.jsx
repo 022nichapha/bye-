@@ -1,0 +1,206 @@
+'use client';
+import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
+import { 
+  UserPlus, 
+  Settings2, 
+  SmilePlus, 
+  MapPinCheckInside, 
+  ArrowLeft,
+  ArrowRight,
+  Sparkles,
+  CheckCircle2
+} from "lucide-react";
+
+export default function GuidePage() {
+  const navigate = useNavigate();
+
+  // Animation Variants
+  const containerVars = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.2, delayChildren: 0.3 }
+    }
+  };
+
+  const itemVars = {
+    hidden: { y: 30, opacity: 0 },
+    visible: { y: 0, opacity: 1, transition: { duration: 0.6, ease: "easeOut" } }
+  };
+
+  const steps = [
+    {
+      title: "เข้าร่วมกับเรา",
+      description: "เข้าสู่ระบบหรือสมัครสมาชิกเพื่อ บันทึกสถานที่โปรด และจดจำอารมณ์ในแต่ละวัน",
+      icon: <UserPlus className="w-7 h-7" />,
+      color: "indigo",
+      gradient: "from-indigo-500 to-blue-600",
+      lightBg: "bg-indigo-50",
+      shadow: "shadow-indigo-200/50"
+    },
+    {
+      title: "ตั้งค่าโปรไฟล์",
+      description: "อัปโหลดรูปและระบุตัวตนของคุณ เพื่อให้ระบบ AI แนะนำพิกัดได้ตรงใจที่สุด",
+      icon: <Settings2 className="w-7 h-7" />,
+      color: "purple",
+      gradient: "from-purple-500 to-pink-600",
+      lightBg: "bg-purple-50",
+      shadow: "shadow-purple-200/50"
+    },
+    {
+      title: "เลือกอารมณ์",
+      description: "บอกความรู้สึกตอนนี้ผ่าน Mood Chips หรือพิมพ์ระบายในช่องค้นหา",
+      icon: <SmilePlus className="w-7 h-7" />,
+      color: "pink",
+      gradient: "from-pink-500 to-rose-600",
+      lightBg: "bg-pink-50",
+      shadow: "shadow-pink-200/50"
+    },
+    {
+      title: "รับพิกัดพักใจ",
+      description: "เลือกสถานที่ที่แนะนำ แล้วออกเดินทางได้ทันที พร้อมระบบนำทางที่แม่นยำ",
+      icon: <MapPinCheckInside className="w-7 h-7" />,
+      color: "emerald",
+      gradient: "from-emerald-500 to-teal-600",
+      lightBg: "bg-emerald-50",
+      shadow: "shadow-emerald-200/50"
+    }
+  ];
+
+  return (
+    <div className="min-h-screen bg-[#F8FAFC] text-[#1E1B4B] font-['Anuphan',sans-serif] selection:bg-indigo-100 overflow-x-hidden">
+      
+      {/* --- Background Elements --- */}
+      <div className="fixed inset-0 z-0">
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-indigo-200/30 rounded-full blur-[120px]" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-pink-200/30 rounded-full blur-[120px]" />
+      </div>
+
+      {/* --- Header / Nav --- */}
+      <nav className="fixed top-0 w-full z-50 bg-white/60 backdrop-blur-xl border-b border-white/40">
+        <div className="container mx-auto px-6 h-20 flex items-center justify-between">
+          <motion.button 
+            whileHover={{ x: -4 }}
+            onClick={() => navigate(-1)} 
+            className="group flex items-center gap-2 text-sm font-bold text-slate-500 hover:text-indigo-600 transition-colors"
+          >
+            <ArrowLeft className="w-4 h-4 group-hover:scale-110" /> ย้อนกลับ
+          </motion.button>
+          
+          <div className="flex items-center gap-2">
+             <div className="p-2 bg-indigo-600 rounded-xl shadow-lg shadow-indigo-200">
+                <Sparkles className="w-5 h-5 text-white" />
+             </div>
+             <span className="font-black text-2xl tracking-tighter">Mood<span className="text-indigo-600">Place</span></span>
+          </div>
+          <div className="hidden md:block w-24"></div> 
+        </div>
+      </nav>
+
+      <main className="container mx-auto px-6 pt-40 pb-24 relative z-10">
+        
+        {/* --- Hero Section --- */}
+        <section className="max-w-4xl mx-auto text-center mb-24">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-slate-100 rounded-full shadow-sm mb-8"
+          >
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
+            </span>
+            <span className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Easy Onboarding</span>
+          </motion.div>
+          
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-4xl md:text-7xl font-black mb-8 leading-[1.1] tracking-tight text-slate-900"
+          >
+            เปลี่ยนความรู้สึก ให้เป็น <br />
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600">
+              พิกัดที่ใช่สำหรับคุณ
+            </span>
+          </motion.h1>
+          <motion.p 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4 }}
+            className="text-lg md:text-xl text-slate-500 max-w-2xl mx-auto font-medium leading-relaxed"
+          >
+            ค้นพบการเดินทางในรูปแบบใหม่ที่ใช้ "หัวใจ" นำทาง <br className="hidden md:block" />
+            ผ่าน 4 ขั้นตอนง่ายๆ ที่คุณทำได้ด้วยตัวเอง
+          </motion.p>
+        </section>
+
+        {/* --- Steps Grid --- */}
+        <motion.div 
+          variants={containerVars}
+          initial="hidden"
+          animate="visible"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-24"
+        >
+          {steps.map((step, index) => (
+            <motion.div 
+              key={index}
+              variants={itemVars}
+              whileHover={{ y: -10 }}
+              className="group relative bg-white/80 backdrop-blur-md rounded-[2.5rem] p-8 border border-white shadow-xl shadow-slate-200/50 flex flex-col items-start transition-all"
+            >
+              {/* Background Step Number */}
+              <div className="absolute top-6 right-8 text-8xl font-black text-slate-100 opacity-20 group-hover:opacity-40 transition-opacity pointer-events-none">
+                {index + 1}
+              </div>
+
+              <div className={`w-16 h-16 rounded-[1.5rem] bg-gradient-to-br ${step.gradient} ${step.shadow} flex items-center justify-center text-white mb-8 group-hover:rotate-6 transition-transform`}>
+                {step.icon}
+              </div>
+
+              <div className="relative z-10">
+                <h3 className="text-2xl font-black mb-4 text-slate-800">{step.title}</h3>
+                <p className="text-slate-500 text-sm leading-relaxed font-medium mb-6">
+                  {step.description}
+                </p>
+                <div className="flex items-center gap-2 text-[10px] font-black uppercase text-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity tracking-widest">
+                  <CheckCircle2 className="w-3 h-3" /> Step Completed
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* --- Final CTA --- */}
+        <motion.div 
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.2 }}
+          className="relative max-w-3xl mx-auto"
+        >
+          <div className="absolute inset-0 bg-indigo-600 blur-[80px] opacity-10" />
+          <div className="relative bg-[#1E1B4B] rounded-[3rem] p-12 overflow-hidden shadow-2xl shadow-indigo-900/40 text-center">
+            <div className="absolute top-0 right-0 p-8 opacity-10">
+              <Sparkles className="w-32 h-32 text-white" />
+            </div>
+            
+            <h2 className="text-3xl md:text-4xl font-black text-white mb-8 relative z-10">
+              พร้อมที่จะตามหา <br />
+              <span className="text-indigo-400">พื้นที่พักพิงใจ</span> ของคุณหรือยัง?
+            </h2>
+            
+            <button 
+              onClick={() => navigate('/')}
+              className="group relative inline-flex items-center gap-3 bg-white text-[#1E1B4B] px-12 py-5 rounded-2xl text-lg font-black shadow-xl hover:bg-indigo-50 transition-all active:scale-95 z-10"
+            >
+              เริ่มต้นใช้งาน
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
+            </button>
+          </div>
+        </motion.div>
+
+      </main>
+
+    </div>
+  );
+}
